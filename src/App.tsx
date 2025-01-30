@@ -1,12 +1,14 @@
 import { ThemeProvider } from "styled-components";
 import { defaultTheme } from "./styles/theme/default";
 import { GlobalStyle } from "./styles/globals";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes";
 
 const App = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
-      <h1>GitHub Blog</h1>
+      <RouterProvider router={router} />
     </ThemeProvider>
   );
 };
