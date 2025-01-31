@@ -3,6 +3,7 @@ import { Card } from "@components/Card";
 import * as S from "./styles";
 import { ArrowSquareOut, GithubLogo } from "@phosphor-icons/react";
 import { Building, Users } from "@phosphor-icons/react/dist/ssr";
+import { NavLink } from "@components/NavLink";
 
 export const Profile = () => {
   return (
@@ -17,28 +18,28 @@ export const Profile = () => {
             <S.ProfileHeader>
               <h1>Wigor Ribeiro Da Costa</h1>
 
-              <S.ProfileLink to="/">
-                <span>GitHub </span>
-
-                <ArrowSquareOut size={12} weight="fill" />
-              </S.ProfileLink>
+              <NavLink
+                to="/"
+                text="GitHub"
+                icon={<ArrowSquareOut size={12} />}
+              />
             </S.ProfileHeader>
 
             <S.Info>
-              <div>
+              <S.ProfileResume>
                 <GithubLogo size={18} weight="fill" />
                 <span>WigorCosta21</span>
-              </div>
+              </S.ProfileResume>
 
-              <div>
+              <S.ProfileResume>
                 <Building size={18} weight="fill" />
                 <span>Rocketseat</span>
-              </div>
+              </S.ProfileResume>
 
-              <div>
+              <S.ProfileResume>
                 <Users size={18} weight="fill" />
                 <span>32 seguidores</span>
-              </div>
+              </S.ProfileResume>
             </S.Info>
           </S.InfoContent>
         </S.ProfileInfo>

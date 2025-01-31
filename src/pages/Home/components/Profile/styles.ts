@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { mixins } from "styles/mixins";
 
@@ -47,15 +46,11 @@ export const ProfileHeader = styled.div`
   @media screen and (max-width: 600px) {
     flex-direction: column;
     gap: 0.5rem;
-  }
-`;
 
-export const ProfileLink = styled(Link)`
-  display: flex;
-  gap: 0.5rem;
-  text-decoration: none;
-  ${mixins.fonts.link}
-  color: ${(props) => props.theme.blue};
+    h1 {
+      ${mixins.fonts.titleM}
+    }
+  }
 `;
 
 export const Info = styled.div`
@@ -63,21 +58,31 @@ export const Info = styled.div`
   align-items: center;
   gap: 1.5rem;
 
-  div {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-
-    span {
-      ${mixins.fonts.textM}
-      color: ${(props) => props.theme["base-subtitle"]};
-    }
-  }
-
   @media screen and (max-width: 600px) {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
     margin-top: 0.5rem;
+  }
+`;
+
+export const ProfileResume = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  span {
+    ${mixins.fonts.textM}
+    color: ${(props) => props.theme["base-span"]};
+  }
+
+  svg {
+    color: ${(props) => props.theme["base-label"]};
+  }
+
+  @media screen and (max-width: 600px) {
+    span {
+      ${mixins.fonts.textS}
+    }
   }
 `;

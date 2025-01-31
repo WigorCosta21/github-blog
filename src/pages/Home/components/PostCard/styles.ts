@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { mixins } from "styles/mixins";
 
@@ -12,18 +13,27 @@ export const PostContainer = styled.section`
   }
 `;
 
-export const Item = styled.div`
+export const Item = styled(Link)`
   background-color: ${(props) => props.theme["base-post"]};
   border-radius: 10px;
   padding: 2rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all 0.5s;
+
+  &:hover {
+    border-color: ${(props) => props.theme["base-label"]};
+  }
 
   div {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1.25rem;
     height: 64px;
+  }
 
-    @media screen and (max-width: 864px) {
+  @media screen and (max-width: 864px) {
+    div {
       flex-direction: column;
       gap: 0.5rem;
       height: auto;

@@ -9,7 +9,7 @@ export const PostCard = () => {
   return (
     <Container>
       <S.PostContainer>
-        <S.Item>
+        <S.Item to="/post">
           <div>
             <S.Title>JavaScript data types and data structures</S.Title>
 
@@ -19,7 +19,7 @@ export const PostCard = () => {
           <S.Paragraph>{getDescription(text, 181)}</S.Paragraph>
         </S.Item>
 
-        <S.Item>
+        <S.Item to="/post">
           <div>
             <S.Title>JavaScript data types and data structures</S.Title>
 
@@ -29,7 +29,7 @@ export const PostCard = () => {
           <S.Paragraph>{getDescription(text, 181)}</S.Paragraph>
         </S.Item>
 
-        <S.Item>
+        <S.Item to="/post">
           <div>
             <S.Title>JavaScript data types and data structures</S.Title>
 
@@ -39,7 +39,7 @@ export const PostCard = () => {
           <S.Paragraph>{getDescription(text, 181)}</S.Paragraph>
         </S.Item>
 
-        <S.Item>
+        <S.Item to="/post">
           <div>
             <S.Title>JavaScript data types and data structures</S.Title>
 
