@@ -8,4 +8,5 @@ export const HeaderContainer = styled.header`
   background-image: url(${coverImage});
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 `;

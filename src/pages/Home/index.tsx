@@ -1,8 +1,14 @@
+import { PostCard } from "./components/PostCard";
+import { Profile } from "./components/Profile";
+import { Search } from "./components/Search";
+
 const Home = () => {
   return (
-    <div>
-      <h1>Página Home</h1>
-    </div>
+    <>
+      <Profile />
+      <Search />
+      <PostCard />
+    </>
   );
 };
 

@@ -12,6 +12,11 @@ export const GlobalStyle = createGlobalStyle`
         outline: 0;
     }
 
+    img {
+        width: 100%;
+        display: block;
+    }
+
     body {
         background-color: ${(props) => props.theme["base-background"]};
         color: ${(props) => props.theme["base-text"]};
