@@ -1,44 +1,51 @@
-import { Card } from "@components/Card";
-
-import * as S from "./styles";
-import { ArrowSquareOut, GithubLogo } from "@phosphor-icons/react";
-import { Building, Users } from "@phosphor-icons/react/dist/ssr";
 import { NavLink } from "@components/NavLink";
+import { Card } from "@components/Card";
+import {
+  ArrowSquareOut,
+  Folder,
+  GithubLogo,
+  Users,
+} from "@phosphor-icons/react";
+import * as S from "./styles";
+import { useGitHub } from "@hooks/useGitHub";
 
 export const Profile = () => {
+  const { userProfile } = useGitHub();
+
   return (
     <Card>
       <S.ProfileContainer>
         <div>
-          <S.Img src="https://placehold.co/148x148" alt="" />
+          <S.Img src={userProfile?.avatar_url} alt="" />
         </div>
 
         <S.ProfileInfo>
           <S.InfoContent>
             <S.ProfileHeader>
-              <h1>Wigor Ribeiro Da Costa</h1>
+              <h1>{userProfile?.name}</h1>
 
               <NavLink
-                to="/"
+                to={`${userProfile?.html_url}`}
                 text="GitHub"
                 icon={<ArrowSquareOut size={12} />}
+                newTab
               />
             </S.ProfileHeader>
 
             <S.Info>
               <S.ProfileResume>
                 <GithubLogo size={18} weight="fill" />
-                <span>WigorCosta21</span>
+                <span>{userProfile?.login}</span>
               </S.ProfileResume>
 
               <S.ProfileResume>
-                <Building size={18} weight="fill" />
-                <span>Rocketseat</span>
+                <Folder size={18} weight="fill" />
+                <span>{userProfile?.public_repos} repositórios</span>
               </S.ProfileResume>
 
               <S.ProfileResume>
                 <Users size={18} weight="fill" />
-                <span>32 seguidores</span>
+                <span>{userProfile?.followers} seguidores</span>
               </S.ProfileResume>
             </S.Info>
           </S.InfoContent>

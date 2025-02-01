@@ -3,12 +3,15 @@ import { defaultTheme } from "./styles/theme/default";
 import { GlobalStyle } from "./styles/globals";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes";
+import { GitHubProvider } from "context/GitHubContext";
 
 const App = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
-      <RouterProvider router={router} />
+      <GitHubProvider>
+        <RouterProvider router={router} />
+      </GitHubProvider>
     </ThemeProvider>
   );
 };
