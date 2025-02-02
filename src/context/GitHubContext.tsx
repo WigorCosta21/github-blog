@@ -10,8 +10,21 @@ interface UserProfile {
   public_repos: string;
 }
 
+interface Issues {
+  id: number;
+  title: string;
+  body: string;
+  html_url: string;
+  created_at: string;
+  comments: number;
+  user: {
+    login: string;
+  };
+}
+
 interface GitHubContexType {
   userProfile: UserProfile | null;
+  issues: Issues[];
 }
 
 interface GitHubProviderProps {
@@ -23,6 +36,7 @@ export const GitHubContext = createContext({} as GitHubContexType);
 
 export const GitHubProvider = ({ children }: GitHubProviderProps) => {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [issues, setIssues] = useState<Issues[]>([]);
 
   const fetchUserProfile = async () => {
     try {
@@ -30,16 +44,29 @@ export const GitHubProvider = ({ children }: GitHubProviderProps) => {
 
       return setUserProfile(response.data);
     } catch (error) {
+      console.log("Error fetching user profile");
+      console.log(error);
+    }
+  };
+
+  const fetchIssues = async () => {
+    try {
+      const response = await api.get("/repos/WigorCosta21/github-blog/issues");
+
+      return setIssues(response.data);
+    } catch (error) {
+      console.log("Error fetching issues");
       console.log(error);
     }
   };
 
   useEffect(() => {
     fetchUserProfile();
+    fetchIssues();
   }, []);
 
   return (
-    <GitHubContext.Provider value={{ userProfile }}>
+    <GitHubContext.Provider value={{ userProfile, issues }}>
       {children}
     </GitHubContext.Provider>
   );

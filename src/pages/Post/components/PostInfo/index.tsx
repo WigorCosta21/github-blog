@@ -8,8 +8,21 @@ import {
   ChatCircle,
   GithubLogo,
 } from "@phosphor-icons/react";
+import Markdown from "react-markdown";
+import { useGitHub } from "@hooks/useGitHub";
+import { useParams } from "react-router-dom";
+import { calculateDaysSinceCreated } from "@utils/calculateDaysSinceCreated";
 
 export const PostInfo = () => {
+  const { id } = useParams();
+  const { issues } = useGitHub();
+
+  const issue = issues.find((issue) => issue.id.toString() === id);
+
+  if (!issue) {
+    return <div>Issue não encontrada.</div>;
+  }
+
   return (
     <Card>
       <S.PostInfoContainer>
@@ -21,17 +34,24 @@ export const PostInfo = () => {
             variant="reverse"
           />
 
-          <NavLink to="/" text="GitHub" icon={<ArrowSquareOut size={12} />} />
+          <NavLink
+            to={issue?.html_url as string}
+            text="GitHub"
+            icon={<ArrowSquareOut size={12} />}
+            newTab
+          />
         </S.LinksContent>
 
-        <h1>JavaScript data types and data structures</h1>
+        <h1>
+          <Markdown>{issue?.title}</Markdown>
+        </h1>
 
         <S.PostResume>
           <S.PostResume>
             <div>
               <GithubLogo size={18} weight="fill" />
 
-              <span>WigorCosta21</span>
+              <span>{issue?.user.login}</span>
             </div>
           </S.PostResume>
 
@@ -39,7 +59,7 @@ export const PostInfo = () => {
             <div>
               <CalendarDot size={18} weight="fill" />
 
-              <span>Há 1 dia</span>
+              <span>Há {calculateDaysSinceCreated(issue?.created_at)} dia</span>
             </div>
           </S.PostResume>
 
@@ -47,7 +67,7 @@ export const PostInfo = () => {
             <div>
               <ChatCircle size={18} weight="fill" />
 
-              <span>5 comentários</span>
+              <span>{issue?.comments} comentários</span>
             </div>
           </S.PostResume>
         </S.PostResume>
