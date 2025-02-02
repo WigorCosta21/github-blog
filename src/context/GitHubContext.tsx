@@ -25,6 +25,7 @@ interface Issues {
 interface GitHubContexType {
   userProfile: UserProfile | null;
   issues: Issues[];
+  fetchSearchIssues: (query: string) => Promise<void>;
 }
 
 interface GitHubProviderProps {
@@ -60,13 +61,33 @@ export const GitHubProvider = ({ children }: GitHubProviderProps) => {
     }
   };
 
+  const userName = "WigorCosta21";
+  const repo = "github-blog";
+
+  const fetchSearchIssues = async (query: string) => {
+    try {
+      const response = await api.get("/search/issues", {
+        params: {
+          q: `${query} repo:${userName}/${repo}`,
+        },
+      });
+
+      const responseUserIssues = response.data.items;
+
+      return setIssues(responseUserIssues);
+    } catch (error) {
+      console.log("Error fetching issues");
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchUserProfile();
     fetchIssues();
   }, []);
 
   return (
-    <GitHubContext.Provider value={{ userProfile, issues }}>
+    <GitHubContext.Provider value={{ userProfile, issues, fetchSearchIssues }}>
       {children}
     </GitHubContext.Provider>
   );

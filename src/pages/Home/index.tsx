@@ -1,12 +1,12 @@
 import { PostCard } from "./components/PostCard";
 import { Profile } from "./components/Profile";
-import { Search } from "./components/Search";
+import { SearchIssues } from "./components/SearchIssues";
 
 const Home = () => {
   return (
     <>
       <Profile />
-      <Search />
+      <SearchIssues />
       <PostCard />
     </>
   );

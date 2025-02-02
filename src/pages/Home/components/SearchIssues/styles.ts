@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { mixins } from "styles/mixins";
 
-export const SearchContainer = styled.div`
+export const SearchContainer = styled.form`
   margin-top: 4.5rem;
 
   div {
